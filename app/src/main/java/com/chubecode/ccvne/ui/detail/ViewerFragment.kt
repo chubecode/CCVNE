@@ -1,33 +1,15 @@
 package com.chubecode.ccvne.ui.detail
 
-import androidx.lifecycle.ViewModelProviders
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-
+import androidx.databinding.ViewDataBinding
+import com.chubecode.ccvne.BR
 import com.chubecode.ccvne.R
+import com.chubecode.ccvne.ui.base.BaseFragment
 
-class ViewerFragment : Fragment() {
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-    companion object {
-        fun newInstance() = ViewerFragment()
-    }
-
-    private lateinit var viewModel: ViewerViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.viewer_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ViewerViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+class ViewerFragment : BaseFragment<ViewDataBinding, ViewerViewModel>() {
+    override val bindingVariable = BR.viewModel
+    override val viewModel: ViewerViewModel by viewModel()
+    override val layoutId = R.layout.viewer_fragment
 
 }

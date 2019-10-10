@@ -1,20 +1,27 @@
 package com.chubecode.ccvne.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import com.chubecode.ccvne.BR
 import com.chubecode.ccvne.R
-import com.chubecode.ccvne.data.model.News
+import com.chubecode.ccvne.databinding.ActivityMainBinding
+import com.chubecode.ccvne.ui.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+    override val bindingVariable: Int
+        get() = BR.viewModel
+    override val viewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val model = ViewModelProviders.of(this)[MainViewModel::class.java]
-        model.getNews().observe(this, Observer<List<News>>{ news ->
-            // update UI
-        })
+        bindView(R.layout.activity_main)
+
+
+        viewModel.apply {
+            //observer data here
+        }
     }
+
+
 }

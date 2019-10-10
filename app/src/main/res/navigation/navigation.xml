@@ -4,7 +4,7 @@
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation"
             app:startDestination="@id/newsFragment">
     <fragment android:id="@+id/newsFragment" android:name="com.chubecode.ccvne.ui.news.NewsFragment"
-              android:label="fragment_news" tools:layout="@layout/fragment_news">
+              android:label="fragment_news" tools:layout="@layout/news_fragment">
         <action android:id="@+id/action_newsFragment_to_viewerFragment" app:destination="@id/viewerFragment"/>
     </fragment>
     <fragment android:id="@+id/viewerFragment" android:name="com.chubecode.ccvne.ui.detail.ViewerFragment"

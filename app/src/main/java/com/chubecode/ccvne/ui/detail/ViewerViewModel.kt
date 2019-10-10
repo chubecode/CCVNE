@@ -1,7 +1,7 @@
 package com.chubecode.ccvne.ui.detail
 
-import androidx.lifecycle.ViewModel;
+import com.chubecode.ccvne.ui.base.BaseViewModel
 
-class ViewerViewModel : ViewModel() {
+class ViewerViewModel : BaseViewModel() {
     // TODO: Implement the ViewModel
 }

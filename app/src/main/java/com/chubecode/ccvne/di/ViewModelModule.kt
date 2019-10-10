@@ -11,6 +11,6 @@ import org.koin.dsl.module
  */
 val viewModelModule = module(override = true){
     viewModel{MainViewModel()}
-    viewModel{NewsViewModel()}
+    viewModel{NewsViewModel(get())}
     viewModel{ViewerViewModel()}
 }
