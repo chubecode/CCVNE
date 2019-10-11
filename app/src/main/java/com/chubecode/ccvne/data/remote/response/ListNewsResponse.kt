@@ -1,13 +1,16 @@
 package com.chubecode.ccvne.data.remote.response
 
-import com.chubecode.ccvne.data.model.Feed
+import com.chubecode.ccvne.data.model.Channel
 import com.chubecode.ccvne.data.model.News
-import com.google.gson.annotations.SerializedName
+import org.simpleframework.xml.Element
+import org.simpleframework.xml.Root
 
 /**
  * Created by ChuTien on ${1/25/2017}.
  */
-class ListNewsResponse (
-    @SerializedName("feed") val feed : Feed? = null,
-    @SerializedName("items") val news : List<News>? = null
+@Root(name = "rss", strict = false)
+class ListNewsResponse(
+    @Element
+    val channel: Channel? = null
+
 )

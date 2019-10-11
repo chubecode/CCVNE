@@ -13,5 +13,5 @@ class NewsRepository constructor(
         errorMessage = "Error get Rss"
     )
 
-    suspend fun fetchRss(): MutableList<News> = callRss()?.news?.toMutableList() ?: mutableListOf()
+    suspend fun fetchRss(): MutableList<News> = callRss()?.channel?.item?.toMutableList() ?: mutableListOf()
 }

@@ -1,7 +1,6 @@
 package com.chubecode.ccvne.di
 
 import android.content.Context
-import android.net.sip.SipErrorCode
 import com.chubecode.ccvne.BuildConfig
 import com.chubecode.ccvne.data.remote.ApiService
 import okhttp3.Cache
@@ -10,7 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -26,7 +25,7 @@ val networkModule = module(override = true) {
 }
 
 
-fun createOkHttpCache(context: Context): Any {
+fun createOkHttpCache(context: Context): Cache {
     val size = (10 * 1024 * 1024).toLong() // 10 Mb
     return Cache(context.cacheDir, size)
 }
@@ -61,8 +60,8 @@ fun createOkHttpClient(
 ): OkHttpClient {
     return OkHttpClient.Builder()
         .cache(cache)
-        .connectTimeout(SipErrorCode.TIME_OUT.toLong(), TimeUnit.SECONDS)
-        .readTimeout(SipErrorCode.TIME_OUT.toLong(), TimeUnit.SECONDS)
+        .connectTimeout(3, TimeUnit.SECONDS)
+        .readTimeout(10, TimeUnit.SECONDS)
         .addInterceptor(header)
         .addInterceptor(logging)
         .build()
@@ -70,7 +69,7 @@ fun createOkHttpClient(
 
 fun createAppRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(SimpleXmlConverterFactory.create())
         .baseUrl(BuildConfig.BASE_URL)
         .client(okHttpClient)
         .build()

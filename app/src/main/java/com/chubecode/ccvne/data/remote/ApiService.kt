@@ -11,5 +11,5 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET("rss/tin-moi-nhat.rss")
-    suspend fun getRss() : Deferred<Response<ListNewsResponse>>
+    suspend fun getRss(): Deferred<Response<ListNewsResponse>>
 }

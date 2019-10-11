@@ -68,6 +68,14 @@ dependencies {
     //Koin
     implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
 
+    //Retrofit XMLConverter
+    implementation ('com.squareup.retrofit2:converter-simplexml:2.2.0')
+            {
+                exclude group: 'xpp3', module: 'xpp3'
+                exclude group: 'stax', module: 'stax-api'
+                exclude group: 'stax', module: 'stax'
+            }
+
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
     // For Kotlin use kapt instead of annotationProcessor
     // alternately - if using Java8, use the following instead of lifecycle-compiler
