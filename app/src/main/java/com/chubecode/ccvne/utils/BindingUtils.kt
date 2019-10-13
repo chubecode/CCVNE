@@ -7,8 +7,12 @@ import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.facebook.drawee.view.SimpleDraweeView
+import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @SuppressLint("ObsoleteSdkInt")
@@ -56,5 +60,31 @@ fun loadImage(view: SimpleDraweeView, content: String?) {
             view.setImageURI(url)
         }
     }
+
+}
+
+@BindingAdapter("app:description")
+fun loadText(view: TextView, content: String?) {
+    if (content != null) {
+        val description = content.substringAfter("br>").substringBefore(".\"")
+        if (!description.isEmpty()) {
+            view.text = description
+        }
+    }
+
+}
+
+@BindingAdapter("app:date")
+fun loadDate(view: TextView, content: String?) {
+
+    try {
+        val simpleDateFormat = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH)
+        val date = simpleDateFormat.parse(content)
+        val format = SimpleDateFormat("HH:mm:ss, EEE dd/MM/yyyy", Locale("vi"))
+        view.text = format.format(date)
+    } catch (e: Exception) {
+        view.text = content
+    }
+
 
 }

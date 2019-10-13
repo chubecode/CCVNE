@@ -15,6 +15,7 @@ class NewsViewModel constructor(
     fun fetchNews() {
         viewModelScope.launch {
             news.value = repository.fetchRss()
+
         }
     }
 

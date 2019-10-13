@@ -2,8 +2,11 @@ package com.chubecode.ccvne.ui.detail
 
 import android.os.Build
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
 import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
@@ -43,6 +46,30 @@ class ViewerFragment : BaseFragment<ViewDataBinding, ViewerViewModel>() {
         settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
         settings.cacheMode = WebSettings.LOAD_NO_CACHE
         settings.domStorageEnabled = true
+        web_view.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                view.loadUrl(url)
+                return false
+            }
+
+        }
+        web_view.setOnKeyListener { v, keyCode, event ->
+
+            if (event.action != KeyEvent.ACTION_DOWN) {
+                return@setOnKeyListener true
+            }
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                if (web_view.canGoBack()) {
+                    web_view.goBack()
+                } else {
+                    activity?.onBackPressed()
+                }
+                return@setOnKeyListener true
+            }
+            false
+
+        }
+
 
         activity?.let {
             mainViewModel.color.observe(viewLifecycleOwner,
@@ -65,4 +92,5 @@ class ViewerFragment : BaseFragment<ViewDataBinding, ViewerViewModel>() {
                 })
         }
     }
+
 }
