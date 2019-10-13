@@ -6,12 +6,22 @@ import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.databinding.BindingAdapter
 
 
 @SuppressLint("ObsoleteSdkInt")
 @BindingAdapter("setWebViewClient")
 fun WebView.setWebViewClient(client: WebChromeClient) {
+    webViewClient = object : WebViewClient() {
+
+
+        override fun onPageFinished(view: WebView?, url: String?) {
+            loadUrl(
+                "javascript:document.body.style.setProperty(\"color\", \"red\");"
+            )
+        }
+    }
     webChromeClient = client
     if (Build.VERSION.SDK_INT < 19) {
         setLayerType(View.LAYER_TYPE_HARDWARE, null)

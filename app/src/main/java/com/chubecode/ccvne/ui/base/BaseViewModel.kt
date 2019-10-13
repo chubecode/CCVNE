@@ -2,12 +2,15 @@ package com.chubecode.ccvne.ui.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.chubecode.ccvne.data.model.AppColor
 
 abstract class BaseViewModel : ViewModel() {
 
     val isLoading = MutableLiveData<Boolean>().apply { value = false }
 
     val errorMessage = MutableLiveData<String>()
+
+    val color = MutableLiveData<AppColor>()
 
 
     open fun onLoadFail(throwable: Throwable) {
@@ -26,5 +29,9 @@ abstract class BaseViewModel : ViewModel() {
 
     fun onActivityDestroyed() {
         //destroy anything
+    }
+
+    open fun setAppColor(appColor: AppColor){
+        color.value = appColor
     }
 }

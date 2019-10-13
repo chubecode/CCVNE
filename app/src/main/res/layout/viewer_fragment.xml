@@ -9,6 +9,7 @@
                 name="viewModel"
                 type="com.chubecode.ccvne.ui.detail.ViewerViewModel"
         />
+
         <variable name="url" type="String"/>
 
     </data>
@@ -18,8 +19,10 @@
             tools:context=".ui.detail.ViewerFragment">
 
         <WebView
+                android:id="@+id/web_view"
                 android:layout_width="match_parent"
                 bind:loadUrl="@{url}"
+                android:background="@{viewModel.color.bgColor}"
                 android:layout_height="match_parent"/>
 
     </FrameLayout>

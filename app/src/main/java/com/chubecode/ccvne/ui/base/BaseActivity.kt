@@ -13,6 +13,7 @@ abstract class BaseActivity<ActivityBinding : ViewDataBinding, ViewModel : BaseV
 
     protected fun bindView(layoutId: Int) {
         binding = DataBindingUtil.setContentView(this, layoutId)
+        binding.setLifecycleOwner { this.lifecycle }
         binding.apply {
             setVariable(bindingVariable, viewModel)
         }
