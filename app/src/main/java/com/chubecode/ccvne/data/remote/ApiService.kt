@@ -1,8 +1,7 @@
 package com.chubecode.ccvne.data.remote
 
-import com.chubecode.ccvne.data.remote.response.ListNewsResponse
-import kotlinx.coroutines.Deferred
-import retrofit2.Response
+import com.chubecode.ccvne.data.remote.response.Rss
+import retrofit2.Call
 import retrofit2.http.GET
 
 /**
@@ -11,5 +10,5 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET("rss/tin-moi-nhat.rss")
-    suspend fun getRss(): Deferred<Response<ListNewsResponse>>
+    suspend fun getRss(): Call<Rss>
 }

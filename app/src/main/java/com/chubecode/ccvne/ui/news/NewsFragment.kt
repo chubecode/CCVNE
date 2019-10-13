@@ -21,12 +21,15 @@ class NewsFragment : BaseFragment<ViewDataBinding, NewsViewModel>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initContent()
-
+        btn.setOnClickListener {
+            val action = NewsFragmentDirections.actionNewsFragmentToViewerFragment("https://github.com/chubecode")
+            Navigation.findNavController(parent_view).navigate(action)
+        }
     }
 
     private fun initContent() {
         val adapter = NewsAdapter {
-            val action = NewsFragmentDirections.actionNewsFragmentToViewerFragment()
+            val action = NewsFragmentDirections.actionNewsFragmentToViewerFragment("https://github.com/chubecode")
             Navigation.findNavController(parent_view).navigate(action)
         }
         adapter.setHasStableIds(true)

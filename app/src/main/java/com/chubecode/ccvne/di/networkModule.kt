@@ -60,8 +60,8 @@ fun createOkHttpClient(
 ): OkHttpClient {
     return OkHttpClient.Builder()
         .cache(cache)
-        .connectTimeout(3, TimeUnit.SECONDS)
-        .readTimeout(10, TimeUnit.SECONDS)
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(15, TimeUnit.SECONDS)
         .addInterceptor(header)
         .addInterceptor(logging)
         .build()
@@ -69,8 +69,8 @@ fun createOkHttpClient(
 
 fun createAppRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
-        .addConverterFactory(SimpleXmlConverterFactory.create())
         .baseUrl(BuildConfig.BASE_URL)
+        .addConverterFactory(SimpleXmlConverterFactory.create())
         .client(okHttpClient)
         .build()
 }

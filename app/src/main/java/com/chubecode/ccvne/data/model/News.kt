@@ -3,11 +3,12 @@ package com.chubecode.ccvne.data.model
 
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
+import java.io.Serializable
 
 /**
  * Created by ChuTien on ${1/25/2017}.
  */
-@Root(name = "item")
+@Root(name = "item",strict = false)
 data class News(
     @Element(name = "title", required = false)
     val title: String? = null,
@@ -29,4 +30,4 @@ data class News(
 
     @Element(name = "comments", required = false)
     val comments: String? = null
-)
+):Serializable

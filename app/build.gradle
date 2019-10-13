@@ -69,7 +69,7 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
 
     //Retrofit XMLConverter
-    implementation ('com.squareup.retrofit2:converter-simplexml:2.2.0')
+    implementation ("com.squareup.retrofit2:converter-simplexml:$retrofit2_version")
             {
                 exclude group: 'xpp3', module: 'xpp3'
                 exclude group: 'stax', module: 'stax-api'

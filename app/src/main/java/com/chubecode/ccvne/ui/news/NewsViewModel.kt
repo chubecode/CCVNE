@@ -11,9 +11,10 @@ class NewsViewModel constructor(
     val repository: NewsRepository
 ) : BaseViewModel() {
     val news = MutableLiveData<MutableList<News>>()
+
     fun fetchNews() {
         viewModelScope.launch {
-            news.postValue(repository.fetchRss())
+//            repository.fetchRss()
         }
     }
 }

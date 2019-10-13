@@ -9,8 +9,8 @@ import org.koin.dsl.module
 /**
  * Created by ChuTien on ${1/25/2017}.
  */
-val viewModelModule = module(override = true){
-    viewModel{MainViewModel()}
-    viewModel{NewsViewModel(get())}
-    viewModel{ViewerViewModel()}
+val viewModelModule = module(override = true) {
+    viewModel { MainViewModel() }
+    viewModel { NewsViewModel(get()) }
+    viewModel { ViewerViewModel() }
 }
