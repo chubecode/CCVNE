@@ -25,6 +25,7 @@ class NewsAdapter(
     override fun bindFirstTime(binding: ItemNewsBinding) {
         binding.apply {
             //handler click event here
+
         }
     }
 
@@ -32,6 +33,13 @@ class NewsAdapter(
         binding.apply {
             this.item = item
             //handler something with item
+
+            this.lytParent.setOnClickListener {
+                item.apply {
+                    itemClickListener?.invoke(this)
+                }
+            }
+
         }
     }
 

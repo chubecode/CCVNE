@@ -3,13 +3,13 @@ package com.chubecode.ccvne.di
 import android.content.Context
 import com.chubecode.ccvne.BuildConfig
 import com.chubecode.ccvne.data.remote.ApiService
+import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -59,10 +59,10 @@ fun createOkHttpClient(
     header: Interceptor
 ): OkHttpClient {
     return OkHttpClient.Builder()
-        .cache(cache)
+//        .cache(cache)
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(15, TimeUnit.SECONDS)
-        .addInterceptor(header)
+//        .addInterceptor(header)
         .addInterceptor(logging)
         .build()
 }
@@ -70,7 +70,7 @@ fun createOkHttpClient(
 fun createAppRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
-        .addConverterFactory(SimpleXmlConverterFactory.create())
+        .addConverterFactory(TikXmlConverterFactory.create())
         .client(okHttpClient)
         .build()
 }

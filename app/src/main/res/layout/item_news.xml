@@ -1,32 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:fresco="http://schemas.android.com/tools"
 >
     <data>
         <variable
                 name="item"
                 type="com.chubecode.ccvne.data.model.News"/>
     </data>
-    <androidx.cardview.widget.CardView
+    <LinearLayout
+            android:id="@+id/lyt_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="4dp">
+            android:clickable="true"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/spacing_medium"
+            android:paddingLeft="@dimen/spacing_large"
+            android:paddingRight="@dimen/spacing_large"
+            android:paddingTop="@dimen/spacing_medium">
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:clipToPadding="true"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="false">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_width="match_parent"
+                    app:imageUrl="@{item.description}"
+                    android:layout_height="match_parent"
+            />
+
+        </androidx.cardview.widget.CardView>
+
         <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xmedium"
+                android:orientation="horizontal">
 
             <TextView
-                    android:text="THIS IS ONE NEWS"
-                    android:gravity="center"
-                    android:minHeight="50dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:id="@+id/subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.title}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                   />
+
+            <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+            <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.pubDate}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    />
+
         </LinearLayout>
 
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@{item.title}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
 
-    </androidx.cardview.widget.CardView>
+                app:fontFamily="sans-serif-medium"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:background="@color/grey_5"/>
+    </LinearLayout>
 </layout>

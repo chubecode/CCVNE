@@ -8,6 +8,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.databinding.BindingAdapter
+import com.facebook.drawee.view.SimpleDraweeView
 
 
 @SuppressLint("ObsoleteSdkInt")
@@ -45,4 +46,15 @@ fun WebView.loadUrl(url: String?) {
     if (url != null) {
         loadUrl(url)
     }
+}
+
+@BindingAdapter("app:imageUrl")
+fun loadImage(view: SimpleDraweeView, content: String?) {
+    if (content != null) {
+        val url = content.substringAfter("src=\"").substringBefore("\"")
+        if (!url.isEmpty()) {
+            view.setImageURI(url)
+        }
+    }
+
 }

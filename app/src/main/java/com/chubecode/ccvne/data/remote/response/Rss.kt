@@ -1,15 +1,18 @@
 package com.chubecode.ccvne.data.remote.response
 
 import com.chubecode.ccvne.data.model.Channel
-import org.simpleframework.xml.Element
-import org.simpleframework.xml.Root
+import com.tickaroo.tikxml.annotation.Attribute
+import com.tickaroo.tikxml.annotation.Element
+import com.tickaroo.tikxml.annotation.Xml
 import java.io.Serializable
 
 /**
  * Created by ChuTien on ${1/25/2017}.
  */
-@Root(name = "rss", strict = false)
+@Xml(name = "rss")
 data class Rss(
+    @Attribute(name="version")
+    val version : String,
     @Element
     val channel: Channel
 

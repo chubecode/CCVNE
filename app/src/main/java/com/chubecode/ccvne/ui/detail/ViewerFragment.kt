@@ -1,12 +1,9 @@
 package com.chubecode.ccvne.ui.detail
 
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import androidx.annotation.RequiresApi
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
@@ -32,6 +29,11 @@ class ViewerFragment : BaseFragment<ViewDataBinding, ViewerViewModel>() {
         viewBinding.get()?.apply {
             setVariable(BR.url, args.url)
         }
+        if (Build.VERSION.SDK_INT < 19) {
+            web_view.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+        } else {
+            web_view.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+        }
         val settings = web_view.settings
         settings.javaScriptEnabled = true
         settings.loadWithOverviewMode = true
@@ -52,6 +54,7 @@ class ViewerFragment : BaseFragment<ViewDataBinding, ViewerViewModel>() {
                             0xFFFFFF and it.textColor
                         ) + "\");"
                     )
+
                     web_view.loadUrl(
                         "javascript:document.body.style.setProperty(\"background\", \"" + String.format(
                             "#%06X",

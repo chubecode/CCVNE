@@ -27,23 +27,22 @@ class NewsFragment : BaseFragment<ViewDataBinding, NewsViewModel>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initContent()
-        btn.setOnClickListener {
-            val action = NewsFragmentDirections.actionNewsFragmentToViewerFragment("https://github.com/chubecode")
-            Navigation.findNavController(parent_view).navigate(action)
-        }
+
     }
 
     private fun initContent() {
         val adapter = NewsAdapter {
-            val action = NewsFragmentDirections.actionNewsFragmentToViewerFragment("https://github.com/chubecode")
+            val action = NewsFragmentDirections.actionNewsFragmentToViewerFragment(it.link?:"")
             Navigation.findNavController(parent_view).navigate(action)
         }
-        adapter.setHasStableIds(true)
+
+        swipeContainer.setOnRefreshListener {
+            viewModel.fetchNews()
+        }
         viewBinding.get()?.apply {
 
             recycle_news.apply {
                 layoutManager = PreCachingLayoutManager(context, RecyclerView.VERTICAL, false)
-                setHasFixedSize(true)
                 setItemViewCacheSize(20)
                 this.adapter = adapter
             }
@@ -54,6 +53,7 @@ class NewsFragment : BaseFragment<ViewDataBinding, NewsViewModel>() {
             setAppColor(AppColor(Color.BLACK, Color.WHITE))
             fetchNews()
             news.observe(viewLifecycleOwner, Observer {
+                swipeContainer.isRefreshing = false
                 if (it.size > 0) {
                     adapter.submitList(it)
                 }

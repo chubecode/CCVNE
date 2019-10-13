@@ -1,33 +1,32 @@
 package com.chubecode.ccvne.data.model
 
 
-import org.simpleframework.xml.Element
-import org.simpleframework.xml.Root
+import com.tickaroo.tikxml.annotation.Element
+import com.tickaroo.tikxml.annotation.PropertyElement
+import com.tickaroo.tikxml.annotation.Xml
 import java.io.Serializable
 
 /**
  * Created by ChuTien on ${1/25/2017}.
  */
-@Root(name = "item",strict = false)
+@Xml(name = "item")
 data class News(
-    @Element(name = "title", required = false)
+    @PropertyElement(name = "title")
     val title: String? = null,
 
-    @Element(name = "description", required = false)
+    @PropertyElement(writeAsCData = true)
     val description: String? = null,
 
-    @Element(name = "pubDate", required = false)
+    @PropertyElement(name = "pubDate")
     val pubDate: String? = null,
 
-    @Element(name = "link", required = false)
+    @PropertyElement(name = "link")
     val link: String? = null,
 
-    @Element(name = "guid", required = false)
-    val guid: String? = null,
+    @PropertyElement(name = "guid")
+    val guid: String? = null
 
-    @Element(name = "slash", required = false)
-    val slash: String? = null,
 
-    @Element(name = "comments", required = false)
-    val comments: String? = null
-):Serializable
+) : Serializable
+
+

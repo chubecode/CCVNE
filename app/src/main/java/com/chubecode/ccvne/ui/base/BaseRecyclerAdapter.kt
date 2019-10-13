@@ -1,6 +1,7 @@
 package com.chubecode.ccvne.ui.base
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.chubecode.ccvne.BR
+import com.chubecode.ccvne.data.model.AppColor
 import java.util.concurrent.Executors
 
 abstract class BaseRecyclerAdapter<Item, ViewBinding : ViewDataBinding>(

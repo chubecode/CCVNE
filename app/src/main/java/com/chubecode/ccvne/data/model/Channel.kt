@@ -1,31 +1,31 @@
 package com.chubecode.ccvne.data.model
 
-import org.simpleframework.xml.Element
-import org.simpleframework.xml.ElementList
-import org.simpleframework.xml.Root
+import com.tickaroo.tikxml.annotation.Element
+import com.tickaroo.tikxml.annotation.PropertyElement
+import com.tickaroo.tikxml.annotation.Xml
 import java.io.Serializable
 
 /**
  * Created by ChuTien on ${1/25/2017}.
  */
-@Root(name = "channel",strict = false)
+@Xml(name = "channel")
 data class Channel(
-    @Element
+    @PropertyElement(name = "title")
     val title: String,
 
-    @Element(name = "description")
+    @PropertyElement(name = "description")
     val description: String,
 
-    @Element(name = "pubDate")
+    @PropertyElement(name = "pubDate")
     val pubDate: String,
 
-    @Element(name = "generator")
+    @PropertyElement(name = "generator")
     val generator: String,
 
-    @Element(name = "link")
+    @PropertyElement(name = "link")
     val link: String,
 
-    @ElementList(inline = true,name = "item",required = false)
-    val item: List<News>
+    @Element(name = "item")
+    val item: List<News>?=null
 
-):Serializable
+) : Serializable
