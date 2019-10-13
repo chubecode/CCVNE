@@ -44,11 +44,9 @@ class ViewerFragment : BaseFragment<ViewDataBinding, ViewerViewModel>() {
         settings.setSupportZoom(true)
         settings.builtInZoomControls = false
         settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        settings.cacheMode = WebSettings.LOAD_NO_CACHE
         settings.domStorageEnabled = true
         web_view.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                view.loadUrl(url)
                 return false
             }
 

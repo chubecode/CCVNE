@@ -2,6 +2,7 @@ package com.chubecode.ccvne.ui.news
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
@@ -32,7 +33,7 @@ class NewsFragment : BaseFragment<ViewDataBinding, NewsViewModel>() {
 
     private fun initContent() {
         val adapter = NewsAdapter {
-            val action = NewsFragmentDirections.actionNewsFragmentToViewerFragment(it.link?:"")
+            val action = NewsFragmentDirections.actionNewsFragmentToViewerFragment(it.link ?: "")
             Navigation.findNavController(parent_view).navigate(action)
         }
 
