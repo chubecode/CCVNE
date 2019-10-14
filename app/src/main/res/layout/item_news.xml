@@ -7,6 +7,9 @@
         <variable
                 name="item"
                 type="com.chubecode.ccvne.data.model.News"/>
+        <variable
+                name="color"
+                type="com.chubecode.ccvne.data.model.AppColor"/>
     </data>
     <LinearLayout
             android:id="@+id/lyt_parent"
@@ -41,6 +44,7 @@
                 android:layout_marginTop="@dimen/spacing_xmedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@{color.textColor}"
                 android:text="@{item.title}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         />
@@ -54,6 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:date="@{item.pubDate}"
+                android:textColor="@{color.textColor}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         />
 
@@ -63,6 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
+                android:textColor="@{color.textColor}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:description="@{item.description}"
                 app:fontFamily="sans-serif-medium"/>
@@ -71,6 +77,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/spacing_middle"
-                android:background="@color/grey_5"/>
+                android:background="@color/cardview_shadow_start_color"/>
     </LinearLayout>
 </layout>

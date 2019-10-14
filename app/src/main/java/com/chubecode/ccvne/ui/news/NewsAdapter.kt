@@ -1,7 +1,9 @@
 package com.chubecode.ccvne.ui.news
 
+import android.graphics.Color
 import androidx.recyclerview.widget.DiffUtil
 import com.chubecode.ccvne.R
+import com.chubecode.ccvne.data.model.AppColor
 import com.chubecode.ccvne.data.model.News
 import com.chubecode.ccvne.databinding.ItemNewsBinding
 import com.chubecode.ccvne.ui.base.BaseRecyclerAdapter
@@ -18,6 +20,10 @@ class NewsAdapter(
     }
 
 }) {
+    var appColor: AppColor = AppColor(Color.BLACK,Color.WHITE)
+
+
+
     override fun getLayoutRes(viewType: Int): Int {
         return R.layout.item_news
     }
@@ -33,6 +39,7 @@ class NewsAdapter(
         binding.apply {
             this.item = item
             //handler something with item
+            this.color = appColor
 
             this.lytParent.setOnClickListener {
                 item.apply {

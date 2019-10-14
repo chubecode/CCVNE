@@ -9,6 +9,9 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.chubecode.ccvne.data.model.AppColor
+import com.chubecode.ccvne.ui.news.NewsAdapter
 import com.facebook.drawee.view.SimpleDraweeView
 import java.lang.Exception
 import java.text.SimpleDateFormat
@@ -70,6 +73,17 @@ fun loadText(view: TextView, content: String?) {
         if (!description.isEmpty()) {
             view.text = description
         }
+    }
+
+}
+@BindingAdapter("app:color")
+fun loadColor(view: RecyclerView, color: AppColor?) {
+    if (color != null) {
+        if (view.adapter is NewsAdapter) {
+            (view.adapter as NewsAdapter).appColor = color
+            (view.adapter as NewsAdapter).notifyDataSetChanged()
+        }
+
     }
 
 }
