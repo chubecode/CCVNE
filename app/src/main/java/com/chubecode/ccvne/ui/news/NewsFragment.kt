@@ -2,7 +2,10 @@ package com.chubecode.ccvne.ui.news
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
@@ -31,6 +34,7 @@ class NewsFragment : BaseFragment<ViewDataBinding, NewsViewModel>() {
 
     }
 
+
     private fun initContent() {
         val adapter = NewsAdapter {
             val action = NewsFragmentDirections.actionNewsFragmentToViewerFragment(it.link ?: "")
@@ -55,8 +59,10 @@ class NewsFragment : BaseFragment<ViewDataBinding, NewsViewModel>() {
             fetchNews()
             news.observe(viewLifecycleOwner, Observer {
                 swipeContainer.isRefreshing = false
-                if (it.size > 0) {
+                if (!it.isNullOrEmpty()){
                     adapter.submitList(it)
+                }else{
+                    Log.d("Tien","EMPTYYYYYYYYY")
                 }
             })
 

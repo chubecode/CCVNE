@@ -5,7 +5,9 @@
             app:startDestination="@id/newsFragment">
     <fragment android:id="@+id/newsFragment" android:name="com.chubecode.ccvne.ui.news.NewsFragment"
               android:label="fragment_news" tools:layout="@layout/news_fragment">
-        <action android:id="@+id/action_newsFragment_to_viewerFragment" app:destination="@id/viewerFragment"/>
+        <action android:id="@+id/action_newsFragment_to_viewerFragment"
+                app:destination="@id/viewerFragment"
+                app:popUpToInclusive="false"/>
     </fragment>
     <fragment android:id="@+id/viewerFragment" android:name="com.chubecode.ccvne.ui.detail.ViewerFragment"
               android:label="viewer_fragment" tools:layout="@layout/viewer_fragment">

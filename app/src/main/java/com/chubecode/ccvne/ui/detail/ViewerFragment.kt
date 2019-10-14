@@ -1,5 +1,7 @@
 package com.chubecode.ccvne.ui.detail
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
@@ -12,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.chubecode.ccvne.BR
 import com.chubecode.ccvne.R
+import com.chubecode.ccvne.data.model.AppColor
 import com.chubecode.ccvne.ui.base.BaseFragment
 import com.chubecode.ccvne.ui.main.MainViewModel
 import kotlinx.android.synthetic.main.viewer_fragment.*
@@ -27,6 +30,7 @@ class ViewerFragment : BaseFragment<ViewDataBinding, ViewerViewModel>() {
 
     val mainViewModel: MainViewModel by sharedViewModel()
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewBinding.get()?.apply {
@@ -50,7 +54,9 @@ class ViewerFragment : BaseFragment<ViewDataBinding, ViewerViewModel>() {
                 return false
             }
 
+
         }
+        //goback support
         web_view.setOnKeyListener { v, keyCode, event ->
 
             if (event.action != KeyEvent.ACTION_DOWN) {
