@@ -53,12 +53,9 @@ class ViewerFragment : BaseFragment<ViewDataBinding, ViewerViewModel>() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 return false
             }
-
-
         }
         //goback support
         web_view.setOnKeyListener { v, keyCode, event ->
-
             if (event.action != KeyEvent.ACTION_DOWN) {
                 return@setOnKeyListener true
             }
@@ -71,7 +68,6 @@ class ViewerFragment : BaseFragment<ViewDataBinding, ViewerViewModel>() {
                 return@setOnKeyListener true
             }
             false
-
         }
 
 

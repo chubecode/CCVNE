@@ -37,6 +37,7 @@
 
                 <Switch android:id="@+id/sw_dark_mode"
                         android:text="DarkMode"
+                        app:darkmode="@{viewModel}"
                         android:textColor="@{viewModel.color.textColor}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>

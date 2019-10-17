@@ -41,9 +41,6 @@ class NewsFragment : BaseFragment<ViewDataBinding, NewsViewModel>() {
             Navigation.findNavController(parent_view).navigate(action)
         }
 
-        swipeContainer.setOnRefreshListener {
-            viewModel.fetchNews()
-        }
         viewBinding.get()?.apply {
 
             recycle_news.apply {

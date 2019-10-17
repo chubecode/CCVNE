@@ -2,6 +2,7 @@ package com.chubecode.ccvne.ui.main
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import com.chubecode.ccvne.BR
 import com.chubecode.ccvne.R
 import com.chubecode.ccvne.data.model.AppColor
@@ -19,22 +20,16 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindView(R.layout.activity_main)
-
-
-        sw_dark_mode.setOnCheckedChangeListener { _, isDarkMode ->
-            viewModel.apply {
-                //observer data here
-                setAppColor(if (!isDarkMode) AppColor(Color.BLACK, Color.WHITE) else AppColor(Color.WHITE, Color.BLACK))
-            }
-        }
+        Log.d("Activity","onCreate")
         viewModel.apply {
             //observer data here
             setAppColor(AppColor(Color.BLACK, Color.WHITE))
             binding.executePendingBindings()
         }
 
-
     }
+
+
 
 
 }

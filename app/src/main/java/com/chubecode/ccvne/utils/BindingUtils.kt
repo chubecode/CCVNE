@@ -1,18 +1,24 @@
 package com.chubecode.ccvne.utils
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.graphics.Color
 import android.os.Build
+import android.view.KeyEvent
 import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Switch
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.chubecode.ccvne.data.model.AppColor
+import com.chubecode.ccvne.ui.base.BaseViewModel
 import com.chubecode.ccvne.ui.news.NewsAdapter
 import com.facebook.drawee.view.SimpleDraweeView
+import kotlinx.android.synthetic.main.viewer_fragment.*
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
@@ -55,6 +61,8 @@ fun WebView.loadUrl(url: String?) {
     }
 }
 
+
+
 @BindingAdapter("app:imageUrl")
 fun loadImage(view: SimpleDraweeView, content: String?) {
     if (content != null) {
@@ -76,6 +84,7 @@ fun loadText(view: TextView, content: String?) {
     }
 
 }
+
 @BindingAdapter("app:color")
 fun loadColor(view: RecyclerView, color: AppColor?) {
     if (color != null) {
@@ -100,5 +109,26 @@ fun loadDate(view: TextView, content: String?) {
         view.text = content
     }
 
+
+}
+
+@BindingAdapter("app:darkmode")
+fun setDarkMode(view: Switch, viewModel: BaseViewModel?) {
+    if (viewModel != null) {
+        view.setOnCheckedChangeListener { _, isDarkMode ->
+
+            viewModel.apply {
+                //observer data here
+                setAppColor(
+                    if (!isDarkMode) AppColor(Color.BLACK, Color.WHITE) else AppColor(
+                        Color.WHITE,
+                        Color.BLACK
+                    )
+                )
+            }
+
+        }
+
+    }
 
 }

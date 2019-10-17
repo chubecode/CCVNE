@@ -1,6 +1,8 @@
 package com.chubecode.ccvne.ui.base
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +31,7 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewM
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        Log.d("Tien-" + this.javaClass.simpleName, "onCreateView")
         val dataBinding: ViewBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         viewBinding = AutoClearedValue(this, dataBinding)
         return dataBinding.root
@@ -36,6 +39,7 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("Tien-" + this.javaClass.simpleName, "onViewCreated")
         viewBinding.get()?.apply {
             lifecycleOwner = this@BaseFragment.viewLifecycleOwner
             setVariable(bindingVariable, viewModel)
@@ -46,6 +50,7 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewM
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Log.d("Tien-" + this.javaClass.simpleName, "onActivityCreated")
         mAlertDialog = DialogUtils.createLoadingDialog(context, false)
         viewModel.apply {
             isLoading.observe(this@BaseFragment, Observer {
@@ -76,5 +81,49 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewM
         DialogUtils.showMessage(context, message = message, textPositive = getString(R.string.ok))
     }
 
+    override fun onAttach(context: Context) {
+        Log.d("Tien-" + this.javaClass.simpleName, "onAttach")
+        super.onAttach(context)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("Tien-" + this.javaClass.simpleName, "onCreate")
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onStart() {
+        Log.d("Tien-" + this.javaClass.simpleName, "onStart")
+        super.onStart()
+    }
+
+    override fun onResume() {
+        Log.d("Tien-" + this.javaClass.simpleName, "onResume")
+        super.onResume()
+    }
+
+    override fun onPause() {
+        Log.d("Tien-" + this.javaClass.simpleName, "onPause")
+        super.onPause()
+    }
+
+    override fun onStop() {
+        Log.d("Tien-" + this.javaClass.simpleName, "onStop")
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        Log.d("Tien-" + this.javaClass.simpleName, "onDestroy")
+        super.onDestroy()
+    }
+
+    override fun onDestroyView() {
+        Log.d("Tien-" + this.javaClass.simpleName, "onDestroyView")
+        super.onDestroyView()
+    }
+
+    override fun onDetach() {
+        Log.d("Tien-" + this.javaClass.simpleName, "onDetach")
+        super.onDetach()
+    }
 
 }

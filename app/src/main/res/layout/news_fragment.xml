@@ -20,6 +20,7 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/swipeContainer"
                 android:layout_width="match_parent"
+                app:onRefreshListener="@{() -> viewModel.fetchNews()}"
                 android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -29,6 +30,7 @@
                     android:background="@{viewModel.color.bgColor}"
                     tools:listitem="@layout/item_news"
                     android:layout_height="wrap_content"/>
+
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
